@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Modal</title>
+    <meta name="description" content="The HTML5 Herald" />
+    <meta name="author" content="SitePoint" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&family=Source+Sans+Pro:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      html {
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Barlow Semi Condensed", sans-serif;
+        font-weight: 200;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      button {
+        font-family: "Source Sans Pro", sans-serif;
+        font-weight: 400;
+      }
+      /* The Modal (background) */
+      .modal {
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: #303030; /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      }
+
+      .brand-inspiration {
+        text-align: center;
+      }
+      .brand-inspiration h1,
+      .brand-inspiration p {
+        color: #fff;
+      }
+      .brand-inspiration h1 br {
+        display: initial;
+      }
+      .inspire-form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 50px;
+        justify-content: center;
+      }
+      .inspire-form button {
+        color: #000;
+      }
+      .inspire-form button,
+      .inspire-form input {
+        background-color: #ffce00;
+        border: none;
+        padding: 10px 35px;
+        font-size: 15px;
+        display: block;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+      .inspire-form .input-container {
+        flex-grow: 2;
+        position: relative;
+      }
+
+      .inspire-form .input-container input {
+        background: #fff;
+        text-align: left;
+        padding: 10px;
+        width: 100%;
+        border: solid 1px transparent;
+      }
+
+      .inspire-form .input-container input:focus {
+        outline: none;
+        border: solid 1px transparent;
+      }
+
+      .inspire-form .error {
+        display: none;
+        background: #ffc0c0;
+        color: #ff3e51;
+        -webkit-box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+        box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+        white-space: nowrap;
+        padding: 4px 8px;
+        border-radius: 3px;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 150%);
+        font-weight: bold;
+      }
+
+      .inspire-form.validation-error .error {
+        display: block;
+      }
+
+      /* Modal Content */
+      .brand-inspiration {
+        background-color: #303030;
+        margin: auto;
+        padding: 25px 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
+        color: white;
+      }
+
+      /* The Close Button */
+      .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      @media only screen and (min-width: 700px) {
+        .inspire-form {
+          flex-direction: row;
+        }
+
+        .inspire-form .input-container {
+          max-width: 500px;
+        }
+      }
+
+      @media only screen and (min-width: 1200px) {
+        .modal-content {
+          width: 60%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="brand-inspiration">
+        <span class="close">&times;</span>
+        <h1 class="headline">
+          Bring Your Brand With&nbsp;You&nbsp;—<br />Get Started With Your URL
+        </h1>
+        <div class="subheadline">
+          <p>
+            Bring your brand assets - colors, fonts, images, logos and copy -
+            all in one place!
+          </p>
+        </div>
+        <form
+          id="brand_inspiration"
+          class="inspire-form"
+          action="https://inspire.unbounce.com/brandAssets/"
+        >
+          <div class="input-container">
+            <!-- <div class="error">Please enter a valid URL.</div> -->
+            <input
+              inputmode="url"
+              type="text"
+              placeholder="Type in your URL"
+              name="url"
+              id="url"
+            />
+          </div>
+          <button type="submit">Start Building Your Page</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        let modal = $("#myModal");
+        let openModalBtn = $("#myBtn");
+        let closeBtn = $(".close");
+        openModalBtn.on("click", () => {
+          $(modal).show();
+        });
+
+        closeBtn.on("click", () => {
+          $(modal).hide();
+        });
+      });
+    </script>
+  </body>
+</html>
