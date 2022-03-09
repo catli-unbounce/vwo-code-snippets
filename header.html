@@ -36,7 +36,7 @@
         font-weight: 200;
       }
 
-      .brand-inspiration h1.headline {
+      .brand-inspiration-container h1.headline {
         font-size: 48px;
       }
 
@@ -48,24 +48,17 @@
       #brand-inspiration-modal {
         position: fixed; /* Stay in place */
         z-index: 12; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
         background-color: #303030; /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
       }
 
-      .brand-inspiration {
-        text-align: center;
-      }
-      .brand-inspiration h1,
-      .brand-inspiration p {
+      .brand-inspiration-container h1,
+      .brand-inspiration-container p {
         color: #fff;
       }
-      .brand-inspiration h1 br {
+      .-container h1 br {
         display: initial;
       }
       .inspire-form {
@@ -77,11 +70,12 @@
         justify-content: center;
       }
       .inspire-form button {
+        cursor: pointer;
         color: #000;
+        background-color: #ffce00;
       }
       .inspire-form button,
       .inspire-form input {
-        background-color: #ffce00;
         border: none;
         padding: 10px 35px;
         font-size: 15px;
@@ -95,16 +89,17 @@
       }
 
       .inspire-form .input-container input {
-        background: #fff;
         text-align: left;
         padding: 10px;
         width: 100%;
-        border: solid 1px transparent;
+        border: solid 1px #ffce00;
+        background-color: #303030;
+        color: white;
       }
 
       .inspire-form .input-container input:focus {
         outline: none;
-        border: solid 1px transparent;
+        border: solid 1px #ffce00;
       }
 
       .inspire-form .error {
@@ -129,39 +124,30 @@
       }
 
       /* Modal Content */
-      .brand-inspiration {
+      .brand-inspiration-container {
         background-color: #303030;
-        margin: auto;
+        margin: 0 auto;
         padding: 25px 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 800px;
         text-align: center;
         color: white;
+        width: 80%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
       }
 
-      /* The Close Button */
-      .close {
-        color: white;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: white;
-        text-decoration: none;
-        cursor: pointer;
+      .header__image img {
+        max-width: 100%;
+        margin-top: 20px;
       }
 
       @media only screen and (min-width: 700px) {
-        .inspire-form {
-          flex-direction: row;
-        }
-
         .inspire-form .input-container {
           max-width: 500px;
+        }
+
+        button {
+          max-width: 250px;
         }
       }
 
@@ -169,58 +155,61 @@
         .modal-content {
           width: 60%;
         }
+
+        .brand-inspiration-container div {
+          flex: 0 0 50%;
+        }
+
+        .brand-inspiration-container {
+          flex-direction: row;
+          align-items: center;
+        }
       }
     </style>
   </head>
 
   <body>
-    <div id="brand-inspiration-modal">
-      <div class="brand-inspiration">
-        <span class="close">&times;</span>
-        <h1 class="headline">
-          Bring Your Brand With&nbsp;You&nbsp;—<br />Get Started With Your URL
-        </h1>
-        <div class="subheadline">
-          <p>
-            Bring your brand assets - colors, fonts, images, logos and copy -
-            all in one place!
-          </p>
-        </div>
-        <form
-          id="brand_inspiration"
-          class="inspire-form"
-          action="https://inspire.unbounce.com/brandAssets/"
-        >
-          <div class="input-container">
-            <!-- <div class="error">Please enter a valid URL.</div> -->
-            <input
-              inputmode="url"
-              type="text"
-              placeholder="Type in your URL"
-              name="url"
-              id="url"
-              required
-            />
+    <div class="header" id="brand-inspiration-modal">
+      <div class="brand-inspiration-container">
+        <div>
+          <h1 class="headline">Convert Any URL Into a Smarter Landing Page</h1>
+          <div class="subheadline">
+            <p>
+              Bring your brand assets - colors, fonts, images, logos and copy -
+              all in one place!
+            </p>
           </div>
-          <button class="submit-inspire-url" type="submit">
-            Start Building Your Page
-          </button>
-        </form>
+          <form
+            id="brand_inspiration"
+            class="inspire-form"
+            action="https://inspire.unbounce.com/brandAssets/"
+          >
+            <div class="input-container">
+              <!-- <div class="error">Please enter a valid URL.</div> -->
+              <input
+                class="url-input"
+                inputmode="url"
+                type="text"
+                placeholder="Type in your URL"
+                name="url"
+                id="url"
+                required
+              />
+            </div>
+            <button class="submit-inspire-url" type="submit">
+              Start Building Your Page
+            </button>
+          </form>
+        </div>
+        <div class="header__image">
+          <img src="Conversion_Rate 1.png" />
+        </div>
       </div>
     </div>
 
     <script>
       $(document).ready(function () {
-        let modal = $("#myModal");
-        let openModalBtn = $("#myBtn");
-        let closeBtn = $(".close");
-        openModalBtn.on("click", () => {
-          $(modal).show();
-        });
-
-        closeBtn.on("click", () => {
-          $(modal).hide();
-        });
+        $(".url-input").focus();
       });
     </script>
   </body>
